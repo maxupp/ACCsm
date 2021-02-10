@@ -88,7 +88,7 @@
                                 <div class="form-group row">
                                     <label for="maxCarSlots" class="col-3 col-form-label">Car Slots</label> 
                                     <div class="col-9">
-                                      <input id="maxCarSlots" name="maxCarSlots" type="text" class="form-control">
+                                      <input id="maxCarSlots" name="maxCarSlots" type="number" class="form-control">
                                     </div>
                                   </div>                           
                                   <div class="form-group row">
@@ -135,26 +135,26 @@
                                 <div class="form-group row">
                                   <label for="udpPort" class="col-3 col-form-label">UDP Port</label> 
                                   <div class="col-9">
-                                    <input id="udpPort" name="udpPort" type="text" class="form-control">
+                                    <input id="udpPort" name="udpPort" type="number" class="form-control">
                                   </div>
                                 </div>
                                 <div class="form-group row">
                                   <label for="tcpPort" class="col-3 col-form-label">TCP Port</label> 
                                   <div class="col-9">
-                                    <input id="tcpPort" name="tcpPort" type="text" class="form-control">
+                                    <input id="tcpPort" name="tcpPort" type="number" class="form-control">
                                   </div>
                                 </div>
                                 <div class="form-group row">
                                   <label for="maxConnections" class="col-3 col-form-label">Max Connections</label> 
                                   <div class="col-9">
-                                    <input id="maxConnections" name="maxConnections" type="text" class="form-control">
+                                    <input id="maxConnections" name="maxConnections" type="number" class="form-control">
                                   </div>
                                 </div>
                                 <div class="form-group row">
                                   <label class="col-3">Register</label> 
                                   <div class="col-9">
                                     <div class="custom-control custom-checkbox custom-control-inline">
-                                      <input name="registerToLobby" id="registerToLobby_0" type="checkbox" aria-describedby="registerToLobbyHelpBlock" class="custom-control-input" value="rabbit" checked="checked"> 
+                                      <input name="registerToLobby" id="registerToLobby_0" type="checkbox" aria-describedby="registerToLobbyHelpBlock" class="custom-control-input"  checked="checked"> 
                                       <label for="registerToLobby_0" class="custom-control-label">Register</label>
                                     </div> 
                                     <span id="registerToLobbyHelpBlock" class="form-text text-muted">Whether the server will be visible online.</span>
@@ -164,10 +164,10 @@
                                   <label class="col-3">LAN Discovery</label> 
                                   <div class="col-9">
                                     <div class="custom-control custom-checkbox custom-control-inline">
-                                      <input name="checkbox" id="checkbox_0" type="checkbox" checked="checked" class="custom-control-input" value="rabbit" aria-describedby="checkboxHelpBlock"> 
-                                      <label for="checkbox_0" class="custom-control-label">Active</label>
+                                      <input name="lanDiscovery" id="lanDiscovery_0" type="checkbox" checked="checked" class="custom-control-input" aria-describedby="checkboxHelpBlock"> 
+                                      <label for="lanDiscovery_0" class="custom-control-label">Active</label>
                                     </div> 
-                                    <span id="checkboxHelpBlock" class="form-text text-muted">Defines if the server will listen to LAN discovery requests.</span>
+                                    <span id="lanDiscoveryHelpBlock" class="form-text text-muted">Defines if the server will listen to LAN discovery requests.</span>
                                   </div>
                                 </div> 
                             </form>
@@ -191,37 +191,37 @@
                                 <div class="form-group row">
                                 <label for="preRaceWaitingTimeSeconds" class="col-4 col-form-label">Pre Race Time</label> 
                                 <div class="col-8">
-                                    <input id="preRaceWaitingTimeSeconds" name="preRaceWaitingTimeSeconds" type="text" class="form-control">
+                                    <input id="preRaceWaitingTimeSeconds" name="preRaceWaitingTimeSeconds" type="number" class="form-control">
                                 </div>
                                 </div>
                                 <div class="form-group row">
                                 <label for="sessionOverTimeSeconds" class="col-4 col-form-label">Post Race Time</label> 
                                 <div class="col-8">
-                                    <input id="sessionOverTimeSeconds" name="sessionOverTimeSeconds" type="text" class="form-control">
+                                    <input id="sessionOverTimeSeconds" name="sessionOverTimeSeconds" type="number" class="form-control">
                                 </div>
                                 </div>
                                 <div class="form-group row">
                                 <label for="ambientTemp" class="col-4 col-form-label">Ambient Temperature</label> 
                                 <div class="col-8">
-                                    <input id="ambientTemp" name="ambientTemp" type="text" class="form-control">
+                                    <input id="ambientTemp" name="ambientTemp" type="number" class="form-control">
                                 </div>
                                 </div>
                                 <div class="form-group row">
                                 <label for="cloudLevel" class="col-4 col-form-label">Cloud Level</label> 
                                 <div class="col-8">
-                                    <input id="cloudLevel" name="cloudLevel" type="text" class="form-control">
+                                    <input id="cloudLevel" name="cloudLevel" type="number" class="form-control">
                                 </div>
                                 </div>
                                 <div class="form-group row">
                                 <label for="rain" class="col-4 col-form-label">Rain</label> 
                                 <div class="col-8">
-                                    <input id="rain" name="rain" type="text" class="form-control">
+                                    <input id="rain" name="rain" type="number" class="form-control">
                                 </div>
                                 </div>
                                 <div class="form-group row">
                                 <label for="weatherRandomness" class="col-4 col-form-label">Weather Randomness</label> 
                                 <div class="col-8">
-                                    <input id="weatherRandomness" name="weatherRandomness" type="text" class="form-control">
+                                    <input id="weatherRandomness" name="weatherRandomness" type="number" class="form-control">
                                 </div>
                                 </div> 
                             </div>
@@ -242,31 +242,31 @@
                                 <div class="form-group row">
                                   <label for="mandatoryPitstopCount" class="col-3 col-form-label">Mandatory Pitstops</label> 
                                   <div class="col-9">
-                                    <input id="mandatoryPitstopCount" name="mandatoryPitstopCount" type="text" class="form-control">
+                                    <input id="mandatoryPitstopCount" name="mandatoryPitstopCount" type="number" class="form-control">
                                   </div>
                                 </div>
                                 <div class="form-group row">
                                   <label for="pitWindowLengthSec" class="col-3 col-form-label">Pit Window (s)</label> 
                                   <div class="col-9">
-                                    <input id="pitWindowLengthSec" name="pitWindowLengthSec " type="text" class="form-control">
+                                    <input id="pitWindowLengthSec" name="pitWindowLengthSec " type="number" class="form-control">
                                   </div>
                                 </div>
                                 <div class="form-group row">
                                   <label for="maxDriversCount" class="col-3 col-form-label">Max Drivers Count</label> 
                                   <div class="col-9">
-                                    <input id="maxDriversCount" name="maxDriversCount " type="text" class="form-control">
+                                    <input id="maxDriversCount" name="maxDriversCount " type="number" class="form-control">
                                   </div>
                                 </div>
                                 <div class="form-group row">
                                   <label for="driverStintTimeSec" class="col-3 col-form-label">Driver Stint Time</label> 
                                   <div class="col-9">
-                                    <input id="driverStintTimeSec" name="driverStintTimeSec" type="text" class="form-control">
+                                    <input id="driverStintTimeSec" name="driverStintTimeSec" type="number" class="form-control">
                                   </div>
                                 </div>
                                 <div class="form-group row">
                                   <label for="maxTotalDrivingTime" class="col-3 col-form-label">Max Total Driving Time</label> 
                                   <div class="col-9">
-                                    <input id="maxTotalDrivingTime" name="maxTotalDrivingTime" type="text" class="form-control">
+                                    <input id="maxTotalDrivingTime" name="maxTotalDrivingTime" type="number" class="form-control">
                                   </div>
                                 </div>
                                 <div class="form-group row">
@@ -401,6 +401,33 @@
     </container>
   </body>
 
+<!-- Config Name modal -->
+<div id="dlgEnterConfigName" class="modal" tabindex="-1" role="dialog" >
+  <div class="modal-content">
+    <div class="modal-header">
+      <!--<a type="button" class="close" data-dismiss="modal" aria-hidden="true">×</a>-->
+      <h3 id="myModalLabel">Enter new config name</h3>
+    </div>
+  
+    <div class="modal-body">
+      <form class="form-horizontal">
+          <label class="control-label" for="modal_name_input">Config Name</label>
+          <div class="controls">
+            <input id="modal_name_input" type="text" autocomplete="off">
+          </div>
+      </form>
+    </div>
+  
+    <div class="modal-footer">
+      <!--<a type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</a>-->
+      <!--<a id="dlgAddDeviceFolder_btnOk" type="button" class="btn btn-primary">OK</a>-->
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Session Template -->
 <script id="session-template" type="text/x-custom-template">
     <div id={{nonce}} class="panel panel-default">
         <div class="panel-heading">
@@ -413,25 +440,25 @@
             <div class="form-group row">
                 <label for="hourOfDay" class="col-4 col-form-label">Hour of Day</label> 
                 <div class="col-8">
-                  <input id="hourOfDay" name="hourOfDay" type="text" class="form-control" value={{hourOfDay}}>
+                  <input id="hourOfDay" name="hourOfDay" type="number" class="form-control" value={{hourOfDay}}>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="dayOfWeekend" class="col-4 col-form-label">Day of Weekend</label> 
                 <div class="col-8">
-                  <input id="dayOfWeekend" name="dayOfWeekend" type="text" class="form-control" value={{dayOfWeekend}}>
+                  <input id="dayOfWeekend" name="dayOfWeekend" type="number" class="form-control" value={{dayOfWeekend}}>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="timeMultiplier" class="col-4 col-form-label">Time Multiplier</label> 
                 <div class="col-8">
-                  <input id="timeMultiplier" name="timeMultiplier" type="text" class="form-control" value={{timeMultiplier}}>
+                  <input id="timeMultiplier" name="timeMultiplier" type="number" class="form-control" value={{timeMultiplier}}>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="sessionDurationMinutes" class="col-4 col-form-label">Session Duration</label> 
                 <div class="col-8">
-                  <input id="sessionDurationMinutes" name="sessionDurationMinutes" type="text" class="form-control" value={{sessionDurationMinutes}} aria-describedby="sessionDurationMinutesHelpBlock"> 
+                  <input id="sessionDurationMinutes" name="sessionDurationMinutes" type="number" class="form-control" value={{sessionDurationMinutes}} aria-describedby="sessionDurationMinutesHelpBlock"> 
                   <span id="sessionDurationMinutesHelpBlock" class="form-text text-muted">in minutes</span>
                 </div>
               </div>
@@ -464,6 +491,7 @@
     require("bootstrap");
     const fs = require("fs");
     const Handlebars = require("handlebars");
+    const copydir = require('copy-dir');
     require("./renderer.js");
 
     Handlebars.registerHelper ("setChecked", function (value, currentValue) {
@@ -544,8 +572,9 @@
     // ################### config IO ##########################
 
     function updateConfigSelect(){
-        let dirs = getDirectories('./templates');
+      $('#config_select').empty();
 
+        let dirs = getDirectories('./templates');
 
         $.each(dirs, function (i, dir) {
             $('#config_select').append($('<option>', { 
@@ -571,20 +600,15 @@
                 // this is a radio group
                 $("input[value = '" + value + "']").click();
             }
-            else if (target.attr('type') === 'range'){
+            else if (target.attr('type') === 'range' 
+            || target.attr('type') === 'text' 
+            || target.attr('type') === 'number' 
+            || target.attr('type') === 'select'){
                 $('#' + key).val(value);      
-            }
-            else if (target.attr('type') === 'text')
-            {
-                $('#' + key).val(value);
             }
             else if (target.attr('type') === 'checkbox')
             {
                 target.prop("checked", value)
-            }
-            else if (target.attr('type') === 'select')
-            {
-                $('#' + key).val(value);
             }
             else
             {
@@ -645,34 +669,68 @@
         setCfg(event_config);
     }
 
-    function writeConfigJSON(config_name, file_name, data)
-    {
-        // data is in format [{'name': ..., 'value': ...}], so restructure
+    function getFormData(form){
+        let data = $(form).serializeArray();
+
+        // convert to correct object structure
+        // data is in format [{'name': ..., 'value': ...}]
+        let converted = {}
+        for (field of data)
+        {
+          converted[field['name']] = field['value'];
+        }
+
+        $(form +" input:checkbox").each(function () { 
+	        converted[this.name] = this.checked;
+        });
         
-        data = JSON.stringify(data);
-        fs.writeFileSync('./templates/' + config_name + '/' + file_name, data,  'ucs2');
+        return converted;       
     }
 
     function saveConfig() {
-        //TODO: Figure out how to save new configs
+
+        //TODO: Figure out how to save new configs        
         let config_name = $('#config_select').val();
 
-        let server_config = $('#server-form').serializeArray();
-        writeConfigJSON(config_name, 'settings.json', server_config);
+        mapping = [
+          // [form-name, filename]
+          ['#server-form', 'settings.json'],
+          ['#configuration-form', 'configuration.json'],
+          ['#eventrules-form', 'eventRules.json'],
+          ['#assistrules-form', ],
+          ['#event-form', 'event.json']
+        ]
 
-        let technical_config = $('#configuration-form').serializeArray();
-        writeConfigJSON(config_name, 'configuration.json', technical_config);
+        for (config of mapping)
+        {
+          let form = config[0];
+          let file_name = config[1];
 
-        let eventrules = $('#eventrules-form').serializeArray();
-        writeConfigJSON(config_name, 'eventRules.json', eventrules);
-
-        let assistrules = $('#assistrules-form').serializeArray();
-        writeConfigJSON(config_name, 'assistRules.json', assistrules);
+          data = getFormData(form);
+          converted = JSON.stringify(data, null, 1);
+          fs.writeFileSync('./templates/' + config_name + '/' + file_name, converted,  'ucs2');
+        }
 
         // event settings are a bit more complicated
-        let event = $('#assistrules-form').serializeArray();
+        let event = $('#event-form').serializeArray();
         writeConfigJSON(config_name, 'event.json', event);
     }
+
+    function newConfig(){
+        // get config name via modal
+        $('#dlgEnterConfigName').modal('show');
+        let new_name = 'crash'
+
+        // make config dir by copying current config to new dir
+        copydir.sync('./cfg', './templates/' + new_name)
+
+        // refresh config names
+        updateConfigSelect();
+
+        // set config selector to new config
+        $('#config_select').val(new_name);
+    }
+      
 
     // ################## binds ################################
 
@@ -705,12 +763,22 @@
         saveConfig();
     });
 
+    $('#new-config-button').on('click', function(event) {
+        newConfig();
+    });
+
 
     // ############# Server Process Handling ##############
     const { spawn } = require('child_process');
     var serverhandle = undefined;
 
     $('#start-server-button').on('click', function(event) {
+        // move config files
+        let config_name = $('#config_select').val();     
+
+        copydir.sync('./templates/' + config_name, './cfg')
+
+        // start server
         serverhandle = spawn('accServer.exe');
 
         serverhandle.stdout.on('data', (data) => {
