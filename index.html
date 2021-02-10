@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link
+        rel="stylesheet"
+        href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+        rel="stylesheet"
+        href="css/main.css"
+    />
+
+    <title>ACC Server Manager</title>
+
+
+</head>
+<body>    
+    <container>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" target="server-page" data-toggle="pill" role="tab"  aria-selected="true">Server</a>
+                        <a class="nav-link" target="event-page" data-toggle="pill" role="tab"  aria-selected="false">Event</a>
+                        <a class="nav-link" target="rules-page" data-toggle="pill" role="tab"  aria-selected="false">Rules</a>
+                        <a class="nav-link" target="entrylist-page" data-toggle="pill" role="tab"  aria-selected="false">Entrylist</a>
+                        <a class="nav-link" target="logs-page" data-toggle="pill" role="tab" aria-selected="false">Logs</a>
+                      </div>
+
+                      <p><a id="serverStatus" class="text-danger">Server stopped.</a></p>
+
+                      <div class="d-flex align-items-end flex-column">
+                        <button type="button" id="start-server-button" class="btn btn-lg btn-block">Start Server</button>
+                        <button type="button" id="stop-server-button" class="btn btn-lg btn-block">Stop Server</button>
+                        <button type="button" id="restart-server-button" class="btn btn-lg btn-block">Restart Server</button>
+                      </div>
+                      
+                      <select id="config_select" name="config_select" type="select" class="custom-select"></select>
+                      
+                      <button type="button" id='new-config-button' class="btn btn-sm">New Config</button>
+                      <button type="button" id='save-config-button' class="btn btn-sm">Save Config</button>
+                      <button type="button" id='load-config-button' class="btn btn-sm">Load Config</button>
+                </div>
+                <div class="col-md-10">
+                    <!-- ======= Server Config Page ======= -->
+                    <div id="server-page" class="row config-page">
+                        <div class="col-md-12">
+                            <h2>
+                                Server Configuration
+                            </h2>
+                            <p>
+                                Add server overview row here at some point.
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <form id='server-form' name='server'>
+                                <div class="form-group row">
+                                  <label for="serverName" class="col-3 col-form-label">Server Name</label> 
+                                  <div class="col-9">
+                                    <input id="serverName" name="server-name" type="text" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="adminPassword" class="col-3 col-form-label">Admin Password</label> 
+                                  <div class="col-9">
+                                    <input id="adminPassword" name="admin-password" type="text" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="password" class="col-3 col-form-label">Password</label> 
+                                  <div class="col-9">
+                                    <input id="password" name="password" type="text" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="spectatorPassword" class="col-3 col-form-label">Spectator Password</label> 
+                                    <div class="col-9">
+                                      <input id="spectatorPassword" name="spectatorPassword" type="text" class="form-control">
+                                    </div>
+                                  </div>
+                                <div class="form-group row">
+                                  <label for="trackMedalsRequirement" class="col-3 col-form-label">Track Medal Req.</label> 
+                                  <div class="col-9">
+                                    <input id="trackMedalsRequirement" name="trackMedalsRequirement" type="text" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="maxCarSlots" class="col-3 col-form-label">Car Slots</label> 
+                                    <div class="col-9">
+                                      <input id="maxCarSlots" name="maxCarSlots" type="text" class="form-control">
+                                    </div>
+                                  </div>                           
+                                  <div class="form-group row">
+                                    <label class="col-4">Car Group</label> 
+                                    <div class="col-8">
+                                      <div class="custom-control custom-radio custom-control-inline">
+                                        <input name="carGroup" id="carGroup_0" type="radio" class="custom-control-input" value="FreeForAll"> 
+                                        <label for="carGroup_0" class="custom-control-label">FreeForAll</label>
+                                      </div>
+                                      <div class="custom-control custom-radio custom-control-inline">
+                                        <input name="carGroup" id="carGroup_1" type="radio" class="custom-control-input" value="GT3"> 
+                                        <label for="carGroup_1" class="custom-control-label">GT3</label>
+                                      </div>
+                                      <div class="custom-control custom-radio custom-control-inline">
+                                        <input name="carGroup" id="carGroup_2" type="radio" class="custom-control-input" value="GT4"> 
+                                        <label for="carGroup_2" class="custom-control-label">GT4</label>
+                                      </div>
+                                      <div class="custom-control custom-radio custom-control-inline">
+                                        <input name="carGroup" id="carGroup_3" type="radio" class="custom-control-input" value="Cup"> 
+                                        <label for="carGroup_3" class="custom-control-label">Cup</label>
+                                      </div>
+                                      <div class="custom-control custom-radio custom-control-inline">
+                                        <input name="carGroup" id="carGroup_4" type="radio" class="custom-control-input" value="ST"> 
+                                        <label for="carGroup_4" class="custom-control-label">ST</label>
+                                      </div>
+                                    </div>
+                                  </div> 
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label" for="safetyRatingRequirement">Safety Rating Req.</label> 
+                                    <div class="col-9">
+                                      <input id="safetyRatingRequirement" name="safetyRatingRequirement" type="range" class="form-control-range" min="0" max="99" step="1">
+                                    </div>
+                                  </div>
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label" for="racecraftRatingRequirement">Racecraft Rating Req.</label> 
+                                    <div class="col-9">
+                                        <input id="racecraftRatingRequirement" name="racecraftRatingRequirement" type="range" class="form-control-range" min="0" max="99" step="1">
+                                    </div>
+                                </div>
+                              </form>
+                        </div>
+                        <div class="col-md-6">
+                            <form id='configuration-form'>
+                                <div class="form-group row">
+                                  <label for="udpPort" class="col-3 col-form-label">UDP Port</label> 
+                                  <div class="col-9">
+                                    <input id="udpPort" name="udpPort" type="text" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="tcpPort" class="col-3 col-form-label">TCP Port</label> 
+                                  <div class="col-9">
+                                    <input id="tcpPort" name="tcpPort" type="text" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="maxConnections" class="col-3 col-form-label">Max Connections</label> 
+                                  <div class="col-9">
+                                    <input id="maxConnections" name="maxConnections" type="text" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label class="col-3">Register</label> 
+                                  <div class="col-9">
+                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                      <input name="registerToLobby" id="registerToLobby_0" type="checkbox" aria-describedby="registerToLobbyHelpBlock" class="custom-control-input" value="rabbit" checked="checked"> 
+                                      <label for="registerToLobby_0" class="custom-control-label">Register</label>
+                                    </div> 
+                                    <span id="registerToLobbyHelpBlock" class="form-text text-muted">Whether the server will be visible online.</span>
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label class="col-3">LAN Discovery</label> 
+                                  <div class="col-9">
+                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                      <input name="checkbox" id="checkbox_0" type="checkbox" checked="checked" class="custom-control-input" value="rabbit" aria-describedby="checkboxHelpBlock"> 
+                                      <label for="checkbox_0" class="custom-control-label">Active</label>
+                                    </div> 
+                                    <span id="checkboxHelpBlock" class="form-text text-muted">Defines if the server will listen to LAN discovery requests.</span>
+                                  </div>
+                                </div> 
+                            </form>
+                        </div>
+                    </div>
+                    <!-- ======= Event Config Page ======= -->
+                    
+                    <form id="event-form" name='event'>
+                    <div id="event-page" class="row d-none config-page">
+
+                            <div class="col-md-6">
+                                <h2>
+                                    Event
+                                </h2>
+                                <div class="form-group row">
+                                <label for="track" class="col-4 col-form-label">Track</label> 
+                                <div class="col-8">
+                                    <select id="track" name="track" type="select" class="custom-select"></select>
+                                </div>
+                                </div> 
+                                <div class="form-group row">
+                                <label for="preRaceWaitingTimeSeconds" class="col-4 col-form-label">Pre Race Time</label> 
+                                <div class="col-8">
+                                    <input id="preRaceWaitingTimeSeconds" name="preRaceWaitingTimeSeconds" type="text" class="form-control">
+                                </div>
+                                </div>
+                                <div class="form-group row">
+                                <label for="sessionOverTimeSeconds" class="col-4 col-form-label">Post Race Time</label> 
+                                <div class="col-8">
+                                    <input id="sessionOverTimeSeconds" name="sessionOverTimeSeconds" type="text" class="form-control">
+                                </div>
+                                </div>
+                                <div class="form-group row">
+                                <label for="ambientTemp" class="col-4 col-form-label">Ambient Temperature</label> 
+                                <div class="col-8">
+                                    <input id="ambientTemp" name="ambientTemp" type="text" class="form-control">
+                                </div>
+                                </div>
+                                <div class="form-group row">
+                                <label for="cloudLevel" class="col-4 col-form-label">Cloud Level</label> 
+                                <div class="col-8">
+                                    <input id="cloudLevel" name="cloudLevel" type="text" class="form-control">
+                                </div>
+                                </div>
+                                <div class="form-group row">
+                                <label for="rain" class="col-4 col-form-label">Rain</label> 
+                                <div class="col-8">
+                                    <input id="rain" name="rain" type="text" class="form-control">
+                                </div>
+                                </div>
+                                <div class="form-group row">
+                                <label for="weatherRandomness" class="col-4 col-form-label">Weather Randomness</label> 
+                                <div class="col-8">
+                                    <input id="weatherRandomness" name="weatherRandomness" type="text" class="form-control">
+                                </div>
+                                </div> 
+                            </div>
+
+                            <div class="col-md-6">
+                                <h2>Sessions</h2>
+                                <div id="sessionContainer"></div>
+                                <button type="button" id='add-session-button' class='btn btn-primary'>Add Session</button>
+                            </div>
+                    </div>
+                    
+                </form>
+                    <!-- ======= Rules Config Page ======= -->
+                    <div id="rules-page" class="row d-none config-page">
+                        <div class="col-md-6">
+                            <h2>Pitstop Rules</h2>
+                            <form id='eventrules-form' name='pitstop'>
+                                <div class="form-group row">
+                                  <label for="mandatoryPitstopCount" class="col-3 col-form-label">Mandatory Pitstops</label> 
+                                  <div class="col-9">
+                                    <input id="mandatoryPitstopCount" name="mandatoryPitstopCount" type="text" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="pitWindowLengthSec" class="col-3 col-form-label">Pit Window (s)</label> 
+                                  <div class="col-9">
+                                    <input id="pitWindowLengthSec" name="pitWindowLengthSec " type="text" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="maxDriversCount" class="col-3 col-form-label">Max Drivers Count</label> 
+                                  <div class="col-9">
+                                    <input id="maxDriversCount" name="maxDriversCount " type="text" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="driverStintTimeSec" class="col-3 col-form-label">Driver Stint Time</label> 
+                                  <div class="col-9">
+                                    <input id="driverStintTimeSec" name="driverStintTimeSec" type="text" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="maxTotalDrivingTime" class="col-3 col-form-label">Max Total Driving Time</label> 
+                                  <div class="col-9">
+                                    <input id="maxTotalDrivingTime" name="maxTotalDrivingTime" type="text" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label class="col-3">Refueling Allowed</label> 
+                                  <div class="col-9">
+                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                      <input name="isRefuellingAllowedInRace " id="isRefuellingAllowedInRace" type="checkbox" class="custom-control-input" value="Allowed" checked="checked"> 
+                                      <label for="isRefuellingAllowedInRace" class="custom-control-label">Allowed</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label class="col-3">Refuelling Time Fixed</label> 
+                                  <div class="col-9">
+                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                      <input name="isRefuellingTimeFixed" id="isRefuellingTimeFixed" type="checkbox" class="custom-control-input" value="Fixed" checked="checked"> 
+                                      <label for="isRefuellingTimeFixed" class="custom-control-label">Fixed</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                        </div>
+                        <div class="col-md-6">
+                            <h2>Assist Rules</h2>
+                            <form id="assistrules-form" name='assists'>
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label" for="stabilityControlLevelMax">Stability Control Max.</label> 
+                                    <div class="col-9">
+                                      <input id="stabilityControlLevelMax" name="stabilityControlLevelMax" type="range" class="form-control-range" min="0" max="100" step="1">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">                                    
+                                        <div class="form-group row">
+                                          <label class="col-9">Disable Autosteer</label> 
+                                          <div class="col-3">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                              <input name="disableAutosteer" id="disableAutosteer" type="checkbox" class="custom-control-input" value="disableAutosteer"> 
+                                              <label for="disableAutosteer" class="custom-control-label"></label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="form-group row">
+                                          <label class="col-9">Disable Auto-Lights</label> 
+                                          <div class="col-3">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                              <input name="disableAutoLights" id="disableAutoLights" type="checkbox" class="custom-control-input" value="disableAutoLights"> 
+                                              <label for="disableAutoLights" class="custom-control-label"></label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="form-group row">
+                                          <label class="col-9">Disable Auto-Wiper</label> 
+                                          <div class="col-3">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                              <input name="disableAutoWiper" id="disableAutoWiper" type="checkbox" class="custom-control-input" value="disableAutoWiper"> 
+                                              <label for="disableAutoWiper" class="custom-control-label"></label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="form-group row">
+                                          <label class="col-9">Disable Auto Engine</label> 
+                                          <div class="col-3">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                              <input name="disableAutoEngineStart" id="disableAutoEngineStart" type="checkbox" class="custom-control-input" value="disableAutoEngineStart"> 
+                                              <label for="disableAutoEngineStart" class="custom-control-label"></label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>                                
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-9">Disable Auto-PL</label> 
+                                            <div class="col-3">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input name="disableAutoPitLimiter" id="disableAutoPitLimiter" type="checkbox" class="custom-control-input" value="disableAutoPitLimiter"> 
+                                                <label for="disableAutoPitLimiter" class="custom-control-label"></label>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-9">Disable Auto-Clutch</label> 
+                                            <div class="col-3">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input name="disableAutoClutch" id="disableAutoClutch" type="checkbox" class="custom-control-input" value="disableAutoClutch"> 
+                                                <label for="disableAutoClutch" class="custom-control-label"></label>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-9">Disable Auto-Gear</label> 
+                                            <div class="col-3">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input name="disableAutoGear" id="disableAutoGear" type="checkbox" class="custom-control-input" value="disableAutoGear"> 
+                                                <label for="disableAutoGear" class="custom-control-label"></label>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-9">Disable Ideal Line</label> 
+                                            <div class="col-3">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input name="disableIdealLine" id="disableIdealLine" type="checkbox" class="custom-control-input" value="disableIdealLine"> 
+                                                <label for="disableIdealLine" class="custom-control-label"></label>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- ======= Entrylist Config Page ======= -->
+                    <div id="entrylist-page" class="row d-none config-page">
+                        <h2>Entrylist</h2>
+                        <br>
+                        <br>
+                        Coming soon.
+                    </div>
+                    <!-- ======= Server Logs Page ======= -->
+                    <div id="logs-page" class="row d-none config-page vh-100">
+                        <textarea id="log-area" class= 'w-100 h-75' readonly >
+                        </textarea>
+                        <button id='clear-log-button' class='btn btn-primary'>Clear</button>
+                    </div>
+                </div>
+                
+            </div>    
+        </div>
+
+    </container>
+  </body>
+
+<script id="session-template" type="text/x-custom-template">
+    <div id={{nonce}} class="panel panel-default">
+        <div class="panel-heading">
+            Session 
+            <button type="button" class="btn btn-danger" onclick="removeSession('{{nonce}}')">
+                <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span>
+            </button>
+        </div>
+        <div class="panel-body">
+            <div class="form-group row">
+                <label for="hourOfDay" class="col-4 col-form-label">Hour of Day</label> 
+                <div class="col-8">
+                  <input id="hourOfDay" name="hourOfDay" type="text" class="form-control" value={{hourOfDay}}>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="dayOfWeekend" class="col-4 col-form-label">Day of Weekend</label> 
+                <div class="col-8">
+                  <input id="dayOfWeekend" name="dayOfWeekend" type="text" class="form-control" value={{dayOfWeekend}}>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="timeMultiplier" class="col-4 col-form-label">Time Multiplier</label> 
+                <div class="col-8">
+                  <input id="timeMultiplier" name="timeMultiplier" type="text" class="form-control" value={{timeMultiplier}}>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="sessionDurationMinutes" class="col-4 col-form-label">Session Duration</label> 
+                <div class="col-8">
+                  <input id="sessionDurationMinutes" name="sessionDurationMinutes" type="text" class="form-control" value={{sessionDurationMinutes}} aria-describedby="sessionDurationMinutesHelpBlock"> 
+                  <span id="sessionDurationMinutesHelpBlock" class="form-text text-muted">in minutes</span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-4">Session Type</label> 
+                <div class="col-8">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input name="{{nonce}}_sessionType" id="{{nonce}}_sessionType_0" type="radio" class="custom-control-input" value="P" {{{setChecked "P" sessionType}}}> 
+                    <label for="{{nonce}}_sessionType_0" class="custom-control-label">Practice</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input name="{{nonce}}_sessionType" id="{{nonce}}_sessionType_1" type="radio" class="custom-control-input" value="Q" {{{setChecked "Q" sessionType}}}> 
+                    <label for="{{nonce}}_sessionType_1" class="custom-control-label">Qualifying</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input name="{{nonce}}_sessionType" id="{{nonce}}_sessionType_2" type="radio" class="custom-control-input" value="R" {{{setChecked "R" sessionType}}}> 
+                    <label for="{{nonce}}_sessionType_2" class="custom-control-label">Race</label>
+                  </div>
+                </div>
+              </div> 
+        </div>
+    </div>
+</script>
+
+<script>
+
+    // ############# initialization #################
+    window.$ = window.jquery = require("jquery");
+    window.popper = require("popper.js");
+    require("bootstrap");
+    const fs = require("fs");
+    const Handlebars = require("handlebars");
+    require("./renderer.js");
+
+    Handlebars.registerHelper ("setChecked", function (value, currentValue) {
+        if ( value == currentValue ) {
+        return "checked";
+        } else {
+        return "";
+        }
+    });
+
+    const getDirectories = source =>
+            fs.readdirSync(source, { withFileTypes: true })
+                .filter(dirent => dirent.isDirectory())
+                .map(dirent => dirent.name)
+
+    // ############## track data ####################
+    var tracks = [
+        'monza',
+        'brands_hatch',
+        'spa',
+        'misano',
+        'paul_ricard',
+        'zolder',
+        'silverstone',
+        'hungaroring',
+        'nurburgring',
+        'barcelona',
+        'zandvoort',
+        'monza_2019',
+        'brands_hatch_2019',
+        'spa_2019',
+        'misano_2019',
+        'paul_ricard_2019',
+        'zolder_2019',
+        'zandvoort_2019',
+        'silverstone_2019',
+        'hungaroring_2019',
+        'nurburgring_2019',
+        'barcelona_2019',
+        'kyalami_2019',
+        'mount_panorama_2019',
+        'suzuka_2019',
+        'laguna_seca_2019',
+        'monza_2020',
+        'brands_hatch_2020',
+        'spa_2020',
+        'misano_2020',
+        'paul_ricard_2020',
+        'zolder_2020',
+        'zandvoort_2020',
+        'silverstone_2020',
+        'hungaroring_2020',
+        'nurburgring_2020',
+        'barcelona_2020',
+        'kyalami_2020',
+        'mount_panorama_2020',
+        'suzuka_2020',
+        'laguna_seca_2020',
+        'imola_2020'
+    ]
+
+    window.onload = function(){
+        // add valid track options to dropdown
+        $.each(tracks, function (i, track) {
+            $('#track').append($('<option>', { 
+                value: track,
+                text : track 
+            }));
+        });
+
+        // populate config select
+        updateConfigSelect();
+
+        // load currently active config
+        loadConfig('./cfg');
+    }
+
+    // ################### config IO ##########################
+
+    function updateConfigSelect(){
+        let dirs = getDirectories('./templates');
+
+
+        $.each(dirs, function (i, dir) {
+            $('#config_select').append($('<option>', { 
+                value: dir,
+                text : dir 
+            }));
+        });
+    }
+
+    function readCfg(path){
+        let x = fs.readFileSync(path, 'ucs2');
+        x = x.substr(1, x.length-1)
+        return JSON.parse(x)
+    };
+
+    function setCfg(data){
+        for (const [key, value] of Object.entries(data)) {
+            //handle inputs, ranges and checkboxes
+            let target = $('#' + key);
+
+            if (target.length == 0)
+            {
+                // this is a radio group
+                $("input[value = '" + value + "']").click();
+            }
+            else if (target.attr('type') === 'range'){
+                $('#' + key).val(value);      
+            }
+            else if (target.attr('type') === 'text')
+            {
+                $('#' + key).val(value);
+            }
+            else if (target.attr('type') === 'checkbox')
+            {
+                target.prop("checked", value)
+            }
+            else if (target.attr('type') === 'select')
+            {
+                $('#' + key).val(value);
+            }
+            else
+            {
+                alert("Unhandled input type: " + key)
+            }
+        }
+    };
+
+    function addSessions(sessions)
+    {
+        for (session of sessions){
+            var template = $('#session-template').html();
+            var templateScript = Handlebars.compile(template);
+
+            // generate random ID prefix to avoid collision
+            let r = Math.random().toString(36).substring(7);
+            session['nonce'] = r;
+            var html = templateScript(session);
+            $('#sessionContainer').append(html);
+        }
+    }
+
+    function removeSession(session_id){
+        console.log(session_id);
+        $('#' + session_id).remove();
+    }
+
+    function loadConfig(configdir){
+        // read general server settings
+        let server_settings = readCfg(configdir + '/settings.json')
+        console.log(server_settings);
+        setCfg(server_settings);
+
+        // read technical server settings
+        let server_config = readCfg(configdir + '/configuration.json')
+        console.log(server_config);
+        setCfg(server_config);
+
+        // read pitstop
+        let pitstop_config = readCfg(configdir + '/eventRules.json')
+        console.log(pitstop_config);
+        setCfg(pitstop_config);
+
+        // read assist rules
+        let assist_config = readCfg(configdir + '/assistRules.json')
+        console.log(assist_config);
+        setCfg(assist_config);
+
+        // read event settings
+        let event_config = readCfg(configdir + '/event.json')
+        console.log(event_config);
+
+        if ('sessions' in event_config){
+            addSessions(event_config['sessions']);
+            delete event_config.sessions;
+        }
+
+        setCfg(event_config);
+    }
+
+    function writeConfigJSON(config_name, file_name, data)
+    {
+        // data is in format [{'name': ..., 'value': ...}], so restructure
+        
+        data = JSON.stringify(data);
+        fs.writeFileSync('./templates/' + config_name + '/' + file_name, data,  'ucs2');
+    }
+
+    function saveConfig() {
+        //TODO: Figure out how to save new configs
+        let config_name = $('#config_select').val();
+
+        let server_config = $('#server-form').serializeArray();
+        writeConfigJSON(config_name, 'settings.json', server_config);
+
+        let technical_config = $('#configuration-form').serializeArray();
+        writeConfigJSON(config_name, 'configuration.json', technical_config);
+
+        let eventrules = $('#eventrules-form').serializeArray();
+        writeConfigJSON(config_name, 'eventRules.json', eventrules);
+
+        let assistrules = $('#assistrules-form').serializeArray();
+        writeConfigJSON(config_name, 'assistRules.json', assistrules);
+
+        // event settings are a bit more complicated
+        let event = $('#assistrules-form').serializeArray();
+        writeConfigJSON(config_name, 'event.json', event);
+    }
+
+    // ################## binds ################################
+
+    $(".nav .nav-link").on("click", function(){
+        let target = $(this).attr('target');
+        // hide all pages
+        $('.config-page').addClass('d-none');
+        // show correct page
+        $('#' + target).removeClass("d-none");
+    });
+
+    $('#add-session-button').on('click', function(event) {
+        tmpl_data = [{
+            hourOfDay: 12,
+            dayOfWeekend: 1,
+            timeMultiplier: 1,
+            sessionDurationMinutes: 60,
+            sessionType: 'R'
+        }]
+        addSessions(tmpl_data);
+    });
+
+    $('#load-config-button').on('click', function(event) {
+        let config_name = $('#config_select').val();      
+
+        loadConfig('./templates/' + config_name);
+    });
+
+    $('#save-config-button').on('click', function(event) {
+        saveConfig();
+    });
+
+
+    // ############# Server Process Handling ##############
+    const { spawn } = require('child_process');
+    var serverhandle = undefined;
+
+    $('#start-server-button').on('click', function(event) {
+        serverhandle = spawn('accServer.exe');
+
+        serverhandle.stdout.on('data', (data) => {
+            console.log(data)
+            $('#log-area').val($('#log-area').val() + data);
+        });
+
+        serverhandle.stderr.on('data', (data) => {
+            //TODO: make text red
+            console.log(data)
+            $('#log-area').val($('#log-area').val() + data);
+        });
+
+        // Update server status
+        $('#serverStatus').text('Server running.');
+        $('#serverStatus').removeClass('text-danger');
+        $('#serverStatus').addClass('text-success');
+    });
+
+    $('#stop-server-button').on('click', function(event) {
+        serverhandle.kill();
+        // Update server status
+        $('#serverStatus').text('Server stopped.');
+        $('#serverStatus').addClass('text-danger');
+        $('#serverStatus').removeClass('text-success');
+    });
+
+    $('#restart-server-button').on('click', function(event) {
+        // should also call save config?
+        $('#stop-server-button').click();
+        $('#start-server-button').click();
+    });
+
+    $('#clear-log-button').on('click', function(event) {
+        $('#log-area').val('');
+    });
+
+  </script>
+</html>
