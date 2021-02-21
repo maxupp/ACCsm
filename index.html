@@ -19,7 +19,7 @@
   <container>
      <div class="container-fluid">
         <div class="row">
-           <div class="col-md-2">
+           <div class="col-md-2 d-flex flex-column">
               <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                  <a class="nav-link active" target="server-page" data-toggle="pill" role="tab"  aria-selected="true">Server</a>
                  <a class="nav-link" target="event-page" data-toggle="pill" role="tab"  aria-selected="false">Event</a>
@@ -27,14 +27,18 @@
                  <a class="nav-link" target="entrylist-page" data-toggle="pill" role="tab"  aria-selected="false">Entrylist</a>
                  <a class="nav-link" target="logs-page" data-toggle="pill" role="tab" aria-selected="false">Logs</a>
               </div>
-              <p><a id="serverStatus" class="text-danger">Server stopped.</a></p>
+              <div class="d-flex align-items-center justify-content-center">
+                <a id="serverStatus" class="text-danger">Server stopped.</a>
+              </div>
               <div class="d-flex align-items-end flex-column">
                  <button type="button" id="start-server-button" class="btn btn-lg btn-block">Start Server</button>
                  <button type="button" id="stop-server-button" class="btn btn-lg btn-block">Stop Server</button>
-                 <button type="button" id="restart-server-button" class="btn btn-lg btn-block">Restart Server</button>
+                 <button type="button" id="restart-server-button" class="btn btn-lg btn-block">Restart Server</button>                 
+                <div class="d-flex flex-row">
+                  <button type="button" id='save-config-button' data-toggle="modal" data-target="#saveConfigModal" class="btn btn-sm btn-secondary">Save Config</button>
+                  <button type="button" id='load-config-button' data-toggle="modal" data-target="#selectConfigModal" class="btn btn-sm btn-secondary">Load Config</button>
+                </div>
               </div>
-              <button type="button" id='save-config-button' data-toggle="modal" data-target="#saveConfigModal" class="btn btn-sm">Save Config</button>
-              <button type="button" id='load-config-button' data-toggle="modal" data-target="#selectConfigModal" class="btn btn-sm">Load Config</button>
            </div>
            <div class="col-md-10">
               <!-- ======= Server Config Page ======= -->
@@ -221,55 +225,56 @@
               <!-- ======= Event Config Page ======= -->
               
               <div id="event-page" class="row d-none config-page">
-                  <form id="event-form" name='event'>
-                    <div class="col-md-6">
-                       <h2>
-                          Event
-                       </h2>
-                       <div class="form-group row">
-                          <label for="track" class="col-4 col-form-label">Track</label> 
-                          <div class="col-8">
-                             <select id="track" name="track" type="select" class="custom-select"></select>
-                          </div>
-                       </div>
-                       <div class="form-group row">
-                          <label for="preRaceWaitingTimeSeconds" class="col-4 col-form-label">Pre Race Time</label> 
-                          <div class="col-8">
-                             <input id="preRaceWaitingTimeSeconds" name="preRaceWaitingTimeSeconds" type="number" class="form-control">
-                          </div>
-                       </div>
-                       <div class="form-group row">
-                          <label for="sessionOverTimeSeconds" class="col-4 col-form-label">Post Race Time</label> 
-                          <div class="col-8">
-                             <input id="sessionOverTimeSeconds" name="sessionOverTimeSeconds" type="number" class="form-control">
-                          </div>
-                       </div>
-                       <div class="form-group row">
-                          <label for="ambientTemp" class="col-4 col-form-label">Ambient Temperature</label> 
-                          <div class="col-8">
-                             <input id="ambientTemp" name="ambientTemp" type="number" class="form-control">
-                          </div>
-                       </div>
-                       <div class="form-group row">
-                          <label for="cloudLevel" class="col-4 col-form-label">Cloud Level</label> 
-                          <div class="col-8">
-                             <input id="cloudLevel" name="cloudLevel" type="number" class="form-control">
-                          </div>
-                       </div>
-                       <div class="form-group row">
-                          <label for="rain" class="col-4 col-form-label">Rain</label> 
-                          <div class="col-8">
-                             <input id="rain" name="rain" type="number" class="form-control">
-                          </div>
-                       </div>
-                       <div class="form-group row">
-                          <label for="weatherRandomness" class="col-4 col-form-label">Weather Randomness</label> 
-                          <div class="col-8">
-                             <input id="weatherRandomness" name="weatherRandomness" type="number" class="form-control">
-                          </div>
-                       </div>
-                    </div>                    
-              </form>
+                <div class="col-md-6">
+                  <form id="event-form" name='event'></form>                  
+                      <h2>
+                        Event
+                      </h2>
+                      <div class="form-group row">
+                        <label for="track" class="col-4 col-form-label">Track</label> 
+                        <div class="col-8">
+                            <select id="track" name="track" type="select" class="custom-select"></select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="preRaceWaitingTimeSeconds" class="col-4 col-form-label">Pre Race Time</label> 
+                        <div class="col-8">
+                            <input id="preRaceWaitingTimeSeconds" name="preRaceWaitingTimeSeconds" type="number" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="sessionOverTimeSeconds" class="col-4 col-form-label">Post Race Time</label> 
+                        <div class="col-8">
+                            <input id="sessionOverTimeSeconds" name="sessionOverTimeSeconds" type="number" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="ambientTemp" class="col-4 col-form-label">Ambient Temperature</label> 
+                        <div class="col-8">
+                            <input id="ambientTemp" name="ambientTemp" type="number" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="cloudLevel" class="col-4 col-form-label">Cloud Level</label> 
+                        <div class="col-8">
+                            <input id="cloudLevel" name="cloudLevel" type="number" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="rain" class="col-4 col-form-label">Rain</label> 
+                        <div class="col-8">
+                            <input id="rain" name="rain" type="number" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="weatherRandomness" class="col-4 col-form-label">Weather Randomness</label> 
+                        <div class="col-8">
+                            <input id="weatherRandomness" name="weatherRandomness" type="number" class="form-control">
+                        </div>
+                      </div>
+                    </form>
+                  </div>                    
+                
                 <div class="col-md-6">
                     <h2>Sessions</h2>
                     <div id="sessionContainer"></div>
@@ -430,7 +435,7 @@
               </div>
               <!-- ======= Server Logs Page ======= -->
               <div id="logs-page" class="row d-none config-page vh-100">
-                 <textarea id="log-area" class= 'w-100 h-75' readonly >
+                 <textarea id="log-area" class= 'form-control' rows=30 readonly >
                  </textarea>
                  <button id='clear-log-button' class='btn btn-primary'>Clear</button>
               </div>
@@ -450,14 +455,14 @@
     <div class="modal-body">
       <form class="form-horizontal">
           <div class="controls">
-            <input id="configNameInput" type="text" autocomplete="off">
+            <input id="configNameInput" type="text" autocomplete="off" autofocus>
           </div>
       </form>
     </div>
   
-    <div class="modal-footer">
-      <a type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</a>
+    <div class="modal-footer">      
       <a id="saveConfigSubmit" type="button" data-dismiss="modal" class="btn btn-primary">OK</a>
+      <a type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</a>
     </div>
   </div>
 
@@ -742,7 +747,7 @@
         let converted = {}
         for (field of data)
         {
-          converted[field['name']] = field['value'];
+          converted[field['name']] = (!isNaN(field['value']) ? Number(field['value']) : field['value']);
         }
 
         $(form +" input:checkbox").each(function () { 
