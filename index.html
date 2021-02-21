@@ -643,7 +643,9 @@
 
     function updateConfigSelect(){
       $('#config_select').empty();
-
+      if (!fs.existsSync('./templates')){
+            fs.mkdirSync('./templates');
+        }
         let dirs = getDirectories('./templates');
 
         $.each(dirs, function (i, dir) {
@@ -709,36 +711,32 @@
     }
 
     function loadConfig(configdir){
-        // read general server settings
-        let server_settings = readCfg(configdir + '/settings.json')
-        console.log(server_settings);
-        setCfg(server_settings);
 
-        // read technical server settings
-        let server_config = readCfg(configdir + '/configuration.json')
-        console.log(server_config);
-        setCfg(server_config);
+        let config_files = [
+          '/settings.json',
+          '/configuration.json',
+          '/eventRules.json',
+          '/assistRules.json',
+          '/event.json'
+        ]
 
-        // read pitstop
-        let pitstop_config = readCfg(configdir + '/eventRules.json')
-        console.log(pitstop_config);
-        setCfg(pitstop_config);
+        for (config_file of config_files)
+        {
+          console.log("Reading " + server_settings);
+          if (fs.existsSync(configdir + config_file)) {            
+            let cfg = readCfg(configdir + config_file);
 
-        // read assist rules
-        let assist_config = readCfg(configdir + '/assistRules.json')
-        console.log(assist_config);
-        setCfg(assist_config);
-
-        // read event settings
-        let event_config = readCfg(configdir + '/event.json')
-        console.log(event_config);
-
-        if ('sessions' in event_config){
-            addSessions(event_config['sessions']);
-            delete event_config.sessions;
+            if (config_file == "/event.json" && 'sessions' in cfg){
+              addSessions(cfg['sessions']);
+              delete cfg.sessions;
+            }
+            setCfg(cfg);
+          }
+          else {
+            console.log('Config File missing: ' + config_file)
+          }
+          
         }
-
-        setCfg(event_config);
     }
 
     function getFormData(form){
